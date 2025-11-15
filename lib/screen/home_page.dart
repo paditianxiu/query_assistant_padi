@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
             title: "生活日常",
             count: 20,
             tools: [
+              "爱搜片",
               "刻度尺",
               "指南针",
               "水平仪",

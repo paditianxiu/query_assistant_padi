@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:query_assistant_padi/function/tool_on_tap.dart';
 
 class ToolGroup extends StatelessWidget {
   final IconData icon;
@@ -55,6 +56,11 @@ class ToolTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionChip(label: Text(text), onPressed: () {});
+    return ActionChip(
+      label: Text(text),
+      onPressed: () {
+        toolOnTap(text);
+      },
+    );
   }
 }
