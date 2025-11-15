@@ -11,12 +11,12 @@ class LoveMovieController extends GetxController {
   Future<void> getHotData() async {
     final res = await DioInstance.instance().get(path: hotUrl);
     final json = DouBanHotType.fromJson(res.data);
-    subjects.value = json.subjects;
+    subjects.assignAll(json.subjects);
   }
 
   @override
   void onInit() {
-    getHotData();
     super.onInit();
+    getHotData();
   }
 }
