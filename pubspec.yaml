@@ -1,6 +1,6 @@
 name: query_assistant_padi
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -9,6 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dio: ^5.9.0
+  get: ^4.7.2
+  delightful_toast: ^1.1.0
+  flutter_screenutil: ^5.9.3
+  line_icons: ^2.0.3
+  html: ^0.15.6
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
