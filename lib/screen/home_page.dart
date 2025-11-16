@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:query_assistant_padi/controllers/home_controller.dart';
 import 'package:query_assistant_padi/ui/drawer_menu.dart';
 import 'package:query_assistant_padi/ui/gradient_card.dart';
