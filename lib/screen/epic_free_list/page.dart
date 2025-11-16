@@ -1,11 +1,10 @@
-// 文件：lib/pages/epic_free_list_page.dart
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/controller.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/type.dart';
 import 'package:query_assistant_padi/utils/url_utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class EpicFreeListPage extends StatelessWidget {
   const EpicFreeListPage({super.key});
@@ -13,32 +12,41 @@ class EpicFreeListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(EpicFreeController());
+
+    const crossAxisCount = 2; // 修改列数在这里
+
     return Scaffold(
       appBar: AppBar(title: const Text('Epic喜加一')),
       body: Obx(() {
         final games = controller.data;
-        if (games.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
-        }
 
-        return Padding(
+        return MasonryGridView.builder(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(8),
-          child: GridView.builder(
-            itemCount: games.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              childAspectRatio: 0.64,
-            ),
-            itemBuilder: (context, index) {
-              final g = games[index];
-              final period = controller.formatPeriod(g.freeStartAt, g.freeEndAt);
-              return _GameCard(game: g, period: period);
-            },
-          ),
+          gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount),
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          itemCount: games.isEmpty ? crossAxisCount * 6 : games.length,
+          itemBuilder: (context, index) {
+            if (games.isEmpty) {
+              return _SkeletonCard();
+            }
+            final g = games[index];
+            final period = controller.formatPeriod(g.freeStartAt, g.freeEndAt);
+            return _GameCard(game: g, period: period);
+          },
         );
       }),
+    );
+  }
+}
+
+class _SkeletonCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(12)),
+      height: 260,
     );
   }
 }
