@@ -28,7 +28,7 @@ class GradientCard extends StatelessWidget {
                   title,
                   style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(.9), fontSize: 10)),
+                Text(subtitle, style: TextStyle(color: Colors.white.withValues(alpha: .9), fontSize: 10)),
               ],
             ),
           ),
