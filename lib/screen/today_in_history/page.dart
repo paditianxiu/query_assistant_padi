@@ -33,6 +33,7 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
       body: Obx(() {
         final data = controller.data;
         return MasonryGridView.builder(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(8),
           gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount),
           mainAxisSpacing: 8,

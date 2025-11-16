@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/function/tool_on_tap.dart';
 
 class ToolGroup extends StatefulWidget {
@@ -26,6 +28,9 @@ class _ToolGroupState extends State<ToolGroup> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.find<ThemeController>();
+    final theme = Theme.of(context);
+
     BorderRadiusGeometry borderRadius;
     if (widget.isFirst) {
       borderRadius = const BorderRadius.only(
@@ -45,68 +50,77 @@ class _ToolGroupState extends State<ToolGroup> with SingleTickerProviderStateMix
       borderRadius = BorderRadius.circular(8);
     }
 
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceContainerHigh, borderRadius: borderRadius),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              setState(() {
-                _expanded = !_expanded;
-              });
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                  child: Icon(widget.icon, color: Theme.of(context).colorScheme.onPrimaryContainer),
-                ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    Text("EveryDay Tool", style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
-                  ],
-                ),
-                const Spacer(),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(30),
+    return Obx(() {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: themeController.isDarkMode.value
+              ? theme.colorScheme.surfaceContainerHighest
+              : theme.colorScheme.surfaceContainerHigh,
+          borderRadius: borderRadius,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                setState(() {
+                  _expanded = !_expanded;
+                });
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: theme.colorScheme.primaryContainer,
+                    child: Icon(widget.icon, color: theme.colorScheme.onPrimaryContainer),
                   ),
-                  child: Text(
-                    "${widget.tools.length} 个功能",
-                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface),
+                      ),
+                      Text("EveryDay Tool", style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurfaceVariant)),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 8),
-                AnimatedRotation(
-                  turns: _expanded ? 0.5 : 0,
-                  duration: const Duration(milliseconds: 300),
-                  child: const Icon(Icons.expand_more),
-                ),
-              ],
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text("${widget.tools.length} 个功能", style: TextStyle(color: theme.colorScheme.onPrimary)),
+                  ),
+                  const SizedBox(width: 8),
+                  AnimatedRotation(
+                    turns: _expanded ? 0.5 : 0,
+                    duration: const Duration(milliseconds: 300),
+                    child: Icon(Icons.expand_more, color: theme.colorScheme.onSurfaceVariant),
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          if (_expanded) const SizedBox(height: 15),
-
-          AnimatedCrossFade(
-            firstChild: const SizedBox.shrink(),
-            secondChild: Wrap(spacing: 10, runSpacing: 4, children: widget.tools.map((t) => ToolTag(text: t)).toList()),
-            crossFadeState: _expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 300),
-          ),
-        ],
-      ),
-    );
+            if (_expanded) const SizedBox(height: 15),
+            AnimatedCrossFade(
+              firstChild: const SizedBox.shrink(),
+              secondChild: Wrap(
+                spacing: 10,
+                runSpacing: 4,
+                children: widget.tools.map((t) => ToolTag(text: t)).toList(),
+              ),
+              crossFadeState: _expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 300),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 

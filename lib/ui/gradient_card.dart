@@ -14,7 +14,9 @@ class GradientCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(colors: [Colors.pink.shade400, Colors.deepPurple.shade400]),
+        gradient: LinearGradient(
+          colors: [Theme.of(context).colorScheme.primary.withValues(alpha: .5), Theme.of(context).colorScheme.primary],
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
