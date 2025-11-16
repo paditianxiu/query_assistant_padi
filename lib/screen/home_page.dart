@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
 
       drawer: ClipRRect(
         borderRadius: const BorderRadius.only(topRight: Radius.circular(30), bottomRight: Radius.circular(30)),
-        child: Drawer(width: 280, backgroundColor: const Color(0xFFEFF3F7), child: const DrawerMenu()),
+        child: Drawer(width: 280, child: const DrawerMenu()),
       ),
 
       body: ListView(
@@ -46,21 +46,17 @@ class HomePage extends StatelessWidget {
           const ToolGroup(
             icon: Icons.wb_sunny_outlined,
             title: "生活日常",
-            count: 20,
+            isFirst: true,
             tools: [
               "爱搜片",
-              "刻度尺",
-              "指南针",
-              "水平仪",
-              "分贝仪",
-              "简易画板",
+              "历史上的今天",
+              "壁纸大全",
               "指持弹幕",
               "指尖陀螺",
               "秒表",
               "计时器",
               "翻页时钟",
               "每日早报",
-              "历史上的今天",
               "在线翻译",
               "每日一文",
               "随机美女视频",
@@ -69,16 +65,23 @@ class HomePage extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 8),
 
           const ToolGroup(
             icon: Icons.settings_outlined,
             title: "系统操作",
-            count: 9,
             tools: ["APK提取", "系统界面调节", "字体调节", "屏幕坏点检测", "空文件夹清理", "设备信息", "声音清灰", "提取手机壁纸"],
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 8),
+          const ToolGroup(
+            icon: Icons.apps_outlined,
+            isLast: true,
+            title: "黑客工具",
+            tools: ["计算器", "进制转换", "二维码生成", "图片压缩", "图片转码", "图片去水印"],
+          ),
+
+          const SizedBox(height: 8),
         ],
       ),
 

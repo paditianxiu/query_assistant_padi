@@ -17,7 +17,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: active
-            ? BoxDecoration(color: const Color(0xFFD8E3EF), borderRadius: BorderRadius.circular(20))
+            ? BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(20),
+              )
             : null,
         child: Row(
           children: [
