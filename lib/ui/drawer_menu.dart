@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({super.key});
@@ -12,21 +13,28 @@ class _DrawerMenuState extends State<DrawerMenu> {
 
   Widget buildItem(IconData icon, String title, int index) {
     bool active = selected == index;
+
+    final theme = Get.theme;
+
     return InkWell(
+      borderRadius: BorderRadius.circular(20),
       onTap: () => setState(() => selected = index),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: active
-            ? BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(20),
-              )
+            ? BoxDecoration(color: theme.colorScheme.primaryContainer, borderRadius: BorderRadius.circular(20))
             : null,
         child: Row(
           children: [
-            Icon(icon, color: Colors.black87),
+            Icon(icon, color: active ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurfaceVariant),
             const SizedBox(width: 16),
-            Text(title, style: const TextStyle(fontSize: 16, color: Colors.black87)),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                color: active ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
           ],
         ),
       ),
@@ -52,7 +60,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
           const SizedBox(height: 10),
           buildItem(Icons.info_outline, "关于软件", 5),
           const Padding(padding: EdgeInsets.symmetric(vertical: 20), child: Divider()),
-
           buildItem(Icons.group_outlined, "官方交流群", 6),
         ],
       ),

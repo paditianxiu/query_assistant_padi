@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:query_assistant_padi/screen/home_page.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:query_assistant_padi/controllers/theme_controller.dart';
+import 'package:query_assistant_padi/screen/home/page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  await GetStorage.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final ThemeController themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
       builder: (context, child) {
-        return GetMaterialApp(
-          title: "查询助手",
-          debugShowCheckedModeBanner: true,
-          theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
-          home: HomePage(),
-        );
+        return Obx(() {
+          return GetMaterialApp(
+            title: "查询助手",
+            debugShowCheckedModeBanner: true,
+            theme: ThemeData(
+              brightness: Brightness.light,
+              colorSchemeSeed: themeController.primaryColor.value,
+              useMaterial3: true,
+            ),
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              colorSchemeSeed: themeController.primaryColor.value,
+              useMaterial3: true,
+            ),
+            themeMode: themeController.isDarkMode.value ? ThemeMode.dark : ThemeMode.light,
+            home: HomePage(),
+          );
+        });
       },
     );
   }

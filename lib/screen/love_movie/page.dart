@@ -75,6 +75,7 @@ class _LoveMoviePageState extends State<LoveMoviePage> with SingleTickerProvider
 
 Widget buildMovieGrid(List items, int crossAxisCount) {
   return GridView.builder(
+    physics: const BouncingScrollPhysics(),
     padding: const EdgeInsets.all(8),
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: crossAxisCount,

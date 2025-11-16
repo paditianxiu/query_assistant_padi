@@ -9,12 +9,7 @@ class TodayInHistodayDetailPage extends StatelessWidget {
   final String imageTag;
   final String subtitleTag;
 
-  const TodayInHistodayDetailPage({
-    super.key,
-    required this.item,
-    required this.imageTag,
-    required this.subtitleTag,
-  });
+  const TodayInHistodayDetailPage({super.key, required this.item, required this.imageTag, required this.subtitleTag});
 
   @override
   Widget build(BuildContext context) {
@@ -40,27 +35,28 @@ class TodayInHistodayDetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: item.cover.isEmpty
-                            ? ScreenUtil().statusBarHeight
-                            : 0,
-                      ),
-                      Text(
-                        item.title,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      SizedBox(height: item.cover.isEmpty ? ScreenUtil().statusBarHeight : 0),
+                      Row(
+                        children: [
+                          SizedBox(width: item.cover.isEmpty ? 40 : 0),
+                          Expanded(
+                            child: Text(
+                              item.title,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 10),
                       Hero(
                         tag: subtitleTag,
                         child: Material(
                           color: Colors.transparent,
-                          child: Text(
-                            item.subtitle,
-                            style: const TextStyle(fontSize: 14),
-                          ),
+                          child: Text(item.subtitle, style: const TextStyle(fontSize: 14)),
                         ),
                       ),
                     ],
