@@ -1,11 +1,12 @@
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:query_assistant_padi/screen/today_in_history/detail.dart';
+import 'package:query_assistant_padi/screen/today_in_history/type.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:query_assistant_padi/screen/today_in_history/controller.dart';
+import 'controller.dart';
 
 class TodayInHistoryPage extends StatefulWidget {
   const TodayInHistoryPage({super.key});
@@ -68,13 +69,18 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
     );
   }
 
-  Widget _buildDataCard(dynamic item) {
+  Widget _buildDataCard(TodayInHistodayType item) {
+    final imageTag = item.title;
+    final subtitleTag = "${item.title}-subtitle";
+
     return Card(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {},
+        onTap: () {
+          Get.to(() => TodayInHistodayDetailPage(item: item, imageTag: imageTag, subtitleTag: subtitleTag));
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -87,21 +93,22 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
                     "${item.title.split("年-")[0]}年",
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  Text(item.title.split("年-")[1], style: const TextStyle(fontSize: 12)),
+
+                  Hero(
+                    tag: subtitleTag,
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Text(item.title.split("年-")[1], style: const TextStyle(fontSize: 12)),
+                    ),
+                  ),
                 ],
               ),
             ),
+
             if (item.cover.isNotEmpty)
-              CachedNetworkImage(
-                imageUrl: item.cover,
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Skeletonizer(
-                  enabled: true,
-                  child: Container(height: 200, width: double.infinity, color: Colors.grey.shade300),
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              Hero(
+                tag: imageTag,
+                child: CachedNetworkImage(imageUrl: item.cover, height: 200, width: double.infinity, fit: BoxFit.cover),
               ),
           ],
         ),
