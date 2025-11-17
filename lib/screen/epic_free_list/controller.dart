@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:query_assistant_padi/http/dio_instance.dart';
-import 'package:query_assistant_padi/screen/epic_free_list/page.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/type.dart';
 
 class EpicFreeController extends GetxController {
@@ -23,14 +21,11 @@ class EpicFreeController extends GetxController {
   String formatPeriod(int startMs, int endMs) {
     if (startMs <= 0 || endMs <= 0) return '未知时间';
 
-    String f(DateTime dt) =>
-        "${dt.year.toString().padLeft(4, '0')}"
-        "/${dt.month.toString().padLeft(2, '0')}"
-        "/${dt.day.toString().padLeft(2, '0')}";
+    final formatter = DateFormat('yyyy/MM/dd');
 
     final start = DateTime.fromMillisecondsSinceEpoch(startMs);
     final end = DateTime.fromMillisecondsSinceEpoch(endMs);
 
-    return "${f(start)} - ${f(end)}";
+    return "${formatter.format(start)} - ${formatter.format(end)}";
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:query_assistant_padi/controllers/theme_controller.dart';
-import 'package:query_assistant_padi/screen/home/page.dart';
+import 'package:query_assistant_padi/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.light,
               colorSchemeSeed: themeController.primaryColor.value,
               useMaterial3: true,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             darkTheme: ThemeData(
               brightness: Brightness.dark,
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             themeMode: themeController.isDarkMode.value ? ThemeMode.dark : ThemeMode.light,
-            home: HomePage(),
+            home: App(),
           );
         });
       },
