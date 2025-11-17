@@ -9,6 +9,8 @@ class ThemeController extends GetxController {
 
   Rx<MaterialColor> primaryColor = Colors.blue.obs;
 
+  int get index => _box.read('primaryColorIndex') ?? 0;
+
   final List<MaterialColor> colors = [
     Colors.red,
     Colors.pink,

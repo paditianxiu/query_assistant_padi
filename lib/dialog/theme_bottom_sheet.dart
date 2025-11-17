@@ -5,44 +5,55 @@ import 'package:query_assistant_padi/controllers/theme_controller.dart';
 class ThemeBottomSheet {
   static void show(ThemeController themeController) {
     Get.bottomSheet(
-      Material(
-        color: Get.theme.colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text("主题设置", style: Get.theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(height: 16),
+      Obx(
+        () => Container(
+          color: Get.theme.colorScheme.surfaceContainerHigh,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "主题设置",
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
+                  ),
+                ),
+                const SizedBox(height: 16),
 
-              Obx(
-                () => SwitchListTile(
+                SwitchListTile(
                   value: themeController.isDarkMode.value,
-                  onChanged: (_) => themeController.toggleTheme(),
-                  title: Text("深色模式", style: TextStyle(fontWeight: FontWeight.w600)),
+                  onChanged: (_) {
+                    Get.back();
+                    themeController.toggleTheme();
+                  },
+                  title: Text(
+                    "深色模式",
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
+                  ),
                   contentPadding: EdgeInsets.zero,
                 ),
-              ),
 
-              const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-              Text("主题颜色", style: TextStyle(fontWeight: FontWeight.w600)),
-              const SizedBox(height: 12),
+                Text(
+                  "主题颜色",
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
+                ),
+                const SizedBox(height: 12),
 
-              // 主题颜色网格
-              Obx(() {
-                return Wrap(
+                Wrap(
                   spacing: 12,
                   runSpacing: 12,
                   children: List.generate(themeController.colors.length, (index) {
                     final color = themeController.colors[index];
                     final isSelected = themeController.primaryColor.value == color;
                     return GestureDetector(
-                      onTap: () => themeController.changeColor(index),
+                      onTap: () {
+                        Get.back();
+                        themeController.changeColor(index);
+                      },
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 250),
                         width: 40,
@@ -64,11 +75,11 @@ class ThemeBottomSheet {
                       ),
                     );
                   }),
-                );
-              }),
+                ),
 
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

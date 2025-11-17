@@ -13,7 +13,7 @@ class EpicFreeListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(EpicFreeController());
 
-    const crossAxisCount = 2; // 修改列数在这里
+    const crossAxisCount = 2;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Epic喜加一')),
