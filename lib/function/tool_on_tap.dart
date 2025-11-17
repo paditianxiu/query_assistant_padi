@@ -36,7 +36,7 @@ void toolOnTap(String toolName) {
         context!,
         title: "二维码生成",
         hintText: "请输入需要链接或文本",
-        type: InputFieldType.number,
+        type: InputFieldType.text,
         onSubmit: (value) => Get.to(ImageViewPage(imageUrl: "https://60s.viki.moe/v2/qrcode?text=$value")),
       );
       break;
