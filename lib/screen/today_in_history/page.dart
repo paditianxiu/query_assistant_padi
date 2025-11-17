@@ -40,29 +40,59 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
           crossAxisSpacing: 8,
           itemCount: data.isEmpty ? crossAxisCount * 5 : data.length,
           itemBuilder: (context, index) {
-            return data.isEmpty ? _buildSkeletonCard() : _buildDataCard(data[index]);
+            return data.isEmpty ? _buildSkeletonCard(context) : _buildDataCard(data[index]);
           },
         );
       }),
     );
   }
 
-  Widget _buildSkeletonCard() {
+  Widget _buildSkeletonCard(BuildContext context) {
     final imgHeight = randomHeight(100, 200).toDouble();
+
+    Color skeletonColor() {
+      final brightness = Theme.of(context).brightness;
+      return brightness == Brightness.dark ? Colors.grey.shade800 : Colors.grey.shade300;
+    }
+
+    final sk = skeletonColor();
+
     return Skeletonizer(
       enabled: true,
       child: Card(
         elevation: 1,
+        color: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            Container(height: 16, margin: const EdgeInsets.symmetric(horizontal: 16), color: Colors.grey.shade300),
+
+            Container(
+              height: 16,
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(color: sk, borderRadius: BorderRadius.circular(4)),
+            ),
+
             const SizedBox(height: 8),
-            Container(height: 16, margin: const EdgeInsets.symmetric(horizontal: 8), color: Colors.grey.shade300),
+
+            Container(
+              height: 16,
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(color: sk, borderRadius: BorderRadius.circular(4)),
+            ),
+
             const SizedBox(height: 8),
-            Container(height: imgHeight, width: double.infinity, color: Colors.grey.shade300),
+
+            Container(
+              height: imgHeight,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: sk,
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12)),
+              ),
+            ),
+
             const SizedBox(height: 8),
           ],
         ),
