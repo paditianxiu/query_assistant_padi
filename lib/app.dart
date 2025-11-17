@@ -5,7 +5,7 @@ import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/dialog/theme_bottom_sheet.dart';
 import 'package:query_assistant_padi/screen/home/page.dart';
 import 'package:query_assistant_padi/screen/info/page.dart';
-import 'package:query_assistant_padi/screen/package/page.dart';
+import 'package:query_assistant_padi/screen/pack/page.dart';
 import 'package:query_assistant_padi/screen/tools/controller.dart';
 import 'package:query_assistant_padi/screen/tools/page.dart';
 import 'package:query_assistant_padi/ui/drawer_menu.dart';

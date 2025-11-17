@@ -17,19 +17,19 @@ class PrintLogInterceptor extends InterceptorsWrapper {
     super.onRequest(options, handler);
   }
 
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    LogUtils.println("\nonResponse-------------->");
-    LogUtils.println("path: ${response.realUri}");
-    LogUtils.println("headers: ${response.headers.toString()}");
-    LogUtils.println("statusMessage: ${response.statusMessage}");
-    LogUtils.println("statusCode: ${response.statusCode}");
-    LogUtils.println("extra: ${response.extra.toString()}");
-    LogUtils.println("data: ${response.data}");
-    LogUtils.println("<--------------onResponse\n");
+  // @override
+  // void onResponse(Response response, ResponseInterceptorHandler handler) {
+  //   LogUtils.println("\nonResponse-------------->");
+  //   LogUtils.println("path: ${response.realUri}");
+  //   LogUtils.println("headers: ${response.headers.toString()}");
+  //   LogUtils.println("statusMessage: ${response.statusMessage}");
+  //   LogUtils.println("statusCode: ${response.statusCode}");
+  //   LogUtils.println("extra: ${response.extra.toString()}");
+  //   LogUtils.println("data: ${response.data}");
+  //   LogUtils.println("<--------------onResponse\n");
 
-    super.onResponse(response, handler);
-  }
+  //   super.onResponse(response, handler);
+  // }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
