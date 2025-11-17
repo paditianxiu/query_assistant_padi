@@ -19,20 +19,18 @@ class ThemeBottomSheet {
               ),
               const SizedBox(height: 16),
 
-              // 深色模式开关
               Obx(
                 () => SwitchListTile(
                   value: themeController.isDarkMode.value,
                   onChanged: (_) => themeController.toggleTheme(),
-                  title: Text("深色模式", style: Get.theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
-                  activeThumbColor: Get.theme.colorScheme.primary,
+                  title: Text("深色模式", style: TextStyle(fontWeight: FontWeight.w600)),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
 
               const SizedBox(height: 16),
 
-              Text("主题颜色", style: Get.theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+              Text("主题颜色", style: TextStyle(fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
 
               // 主题颜色网格

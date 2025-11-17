@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 enum InputFieldType { text, number, multiline, password }
@@ -197,8 +198,9 @@ class _InputBottomSheet extends StatelessWidget {
     );
   }
 
-  ButtonStyle _btnStyle() =>
-      OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)));
+  ButtonStyle _btnStyle() {
+    return OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)));
+  }
 
   Widget _buildTextField(ThemeData theme, TextEditingController controller) {
     return TextField(
@@ -206,6 +208,7 @@ class _InputBottomSheet extends StatelessWidget {
       obscureText: type == InputFieldType.password,
       keyboardType: _mapKeyboardType(),
       maxLines: type == InputFieldType.multiline ? null : 1,
+      inputFormatters: _mapFormatters(),
 
       decoration: InputDecoration(
         filled: true,
@@ -218,12 +221,26 @@ class _InputBottomSheet extends StatelessWidget {
     );
   }
 
+  List<TextInputFormatter> _mapFormatters() {
+    switch (type) {
+      case InputFieldType.number:
+        return [FilteringTextInputFormatter.digitsOnly];
+
+      case InputFieldType.multiline:
+      case InputFieldType.text:
+      case InputFieldType.password:
+        return [];
+    }
+  }
+
   TextInputType _mapKeyboardType() {
     switch (type) {
       case InputFieldType.number:
         return TextInputType.number;
+
       case InputFieldType.multiline:
         return TextInputType.multiline;
+
       case InputFieldType.password:
       case InputFieldType.text:
         return TextInputType.text;

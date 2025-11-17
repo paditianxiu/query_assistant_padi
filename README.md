@@ -1,5 +1,7 @@
 # 查询助手 (Query Assistant)
 
+[![群](https://img.shields.io/badge/%E4%BC%81%E9%B9%85%E7%BE%A4-1073473158-ff69b4)](https://qm.qq.com/q/Y3ac89ZlKy)
+
 一个功能丰富的 Flutter 开发的工具箱应用，支持 Android 平台。
 
 ## 🧩 项目图片
