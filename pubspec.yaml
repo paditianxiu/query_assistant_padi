@@ -24,6 +24,7 @@ dependencies:
   get_storage: ^2.1.1
   salomon_bottom_bar: ^3.3.2
   lazy_load_indexed_stack: ^1.2.1
+  easy_refresh: ^3.4.0
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/controller.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/type.dart';
 import 'package:query_assistant_padi/utils/url_utils.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class EpicFreeListPage extends StatelessWidget {
   const EpicFreeListPage({super.key});
@@ -13,7 +14,7 @@ class EpicFreeListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(EpicFreeController());
 
-    const crossAxisCount = 2; // 修改列数在这里
+    const crossAxisCount = 2;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Epic喜加一')),
@@ -42,11 +43,74 @@ class EpicFreeListPage extends StatelessWidget {
 }
 
 class _SkeletonCard extends StatelessWidget {
+  const _SkeletonCard();
+
+  Color _skeletonColor(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    return brightness == Brightness.dark ? Colors.grey.shade800 : Colors.grey.shade300;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.circular(12)),
-      height: 260,
+    final sk = _skeletonColor(context);
+
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
+      color: Theme.of(context).cardColor,
+      child: Skeletonizer.zone(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(color: sk),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(height: 18, width: double.infinity, color: sk),
+                  const SizedBox(height: 6),
+                  Container(height: 18, width: 140, color: sk),
+
+                  const SizedBox(height: 12),
+
+                  Container(height: 14, width: 80, color: sk),
+
+                  const SizedBox(height: 12),
+
+                  Container(height: 14, width: double.infinity, color: sk),
+                  const SizedBox(height: 6),
+                  Container(height: 14, width: double.infinity, color: sk),
+                  const SizedBox(height: 6),
+                  Container(height: 14, width: 120, color: sk),
+
+                  const SizedBox(height: 12),
+
+                  Row(
+                    children: [
+                      Container(height: 14, width: 14, color: sk),
+                      const SizedBox(width: 8),
+                      Expanded(child: Container(height: 14, color: sk)),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Container(
+                    height: 36,
+                    width: double.infinity,
+                    decoration: BoxDecoration(color: sk, borderRadius: BorderRadius.circular(8)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

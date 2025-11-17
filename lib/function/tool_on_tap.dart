@@ -4,6 +4,7 @@ import 'package:query_assistant_padi/screen/epic_free_list/page.dart';
 import 'package:query_assistant_padi/screen/image_view_page.dart';
 import 'package:query_assistant_padi/screen/love_movie/page.dart';
 import 'package:query_assistant_padi/screen/today_in_history/page.dart';
+import 'package:query_assistant_padi/screen/wallpaper_collection/page.dart';
 
 import 'package:query_assistant_padi/utils/toast_utils.dart';
 
@@ -41,6 +42,9 @@ void toolOnTap(String toolName) {
       break;
     case "Epic喜加一":
       Get.to(EpicFreeListPage());
+      break;
+    case "壁纸大全":
+      Get.to(WallpaperCollectionPage());
       break;
     default:
       ToastUtils.showErrorMsg("功能开发中...");

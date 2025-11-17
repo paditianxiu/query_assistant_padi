@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/app.dart';
+import 'package:query_assistant_padi/http/dio_instance.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DioInstance.instance().initDio();
   await GetStorage.init();
   runApp(MyApp());
 }
