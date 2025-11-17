@@ -12,13 +12,22 @@ class ThemeBottomSheet {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(
-                  child: Text(
-                    "主题设置",
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
+                Container(
+                  width: 40,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: Get.theme.colorScheme.outlineVariant,
+                    borderRadius: BorderRadius.circular(50),
                   ),
+                ),
+
+                const SizedBox(height: 14),
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("主题设置", style: Get.theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 16),
 
@@ -28,20 +37,17 @@ class ThemeBottomSheet {
                     Get.back();
                     themeController.toggleTheme();
                   },
-                  title: Text(
-                    "深色模式",
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
-                  ),
+                  title: Text("深色模式", style: Get.theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
                   contentPadding: EdgeInsets.zero,
                 ),
 
                 const SizedBox(height: 16),
 
-                Text(
-                  "主题颜色",
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Get.theme.colorScheme.onSurface),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("主题颜色", style: Get.theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
 
                 Wrap(
                   spacing: 12,

@@ -11,10 +11,8 @@ class ToolsPage extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(16),
       children: [
-        // 顶部卡片
         const _TopCards(),
         const SizedBox(height: 20),
-        // 工具组列表
         const ToolGroup(
           icon: Icons.wb_sunny_outlined,
           title: "生活日常",
