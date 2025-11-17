@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:query_assistant_padi/dialog/function_bottom_sheet.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/page.dart';

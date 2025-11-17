@@ -248,6 +248,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.20.2"
+  lazy_load_indexed_stack:
+    dependency: "direct main"
+    description:
+      name: lazy_load_indexed_stack
+      sha256: "6026d0f1753ae0427587d6095f823143c1d3e4459c8640ebf0a808044ad8de1c"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -416,6 +424,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.28.0"
+  salomon_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: salomon_bottom_bar
+      sha256: e20abf2e449749432223a8b4e6647c212eef6c2b638e0ed8cc92eff9529c2b48
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.3.2"
   skeletonizer:
     dependency: "direct main"
     description:
