@@ -29,7 +29,7 @@ void toolOnTap(String toolName) {
 
       break;
     case "每日早报":
-      Get.to(ImageViewPage(imageUrl: "https://60s.viki.moe/v2/60s?encoding=image-proxy"));
+      Get.to(ImageViewPage(imageUrl: "https://60s.viki.moe/v2/60s?encoding=image-proxy", cache: false));
       break;
     case "二维码生成":
       DialogService.showInputSheet(

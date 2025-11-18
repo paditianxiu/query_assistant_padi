@@ -32,7 +32,7 @@ class _WallpaperCollectionDetailPageState extends State<WallpaperCollectionDetai
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("壁纸分类详情")),
+      appBar: AppBar(title: const Text("详情")),
       body: Obx(
         () => Skeletonizer(
           enabled: firstLoading.value,

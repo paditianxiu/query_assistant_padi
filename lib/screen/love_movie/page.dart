@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/controller.dart';
+import 'package:query_assistant_padi/screen/love_movie/home_tab_page.dart';
 import 'package:query_assistant_padi/screen/love_movie/movie_card.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/category_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/movie_list_page.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class LoveMoviePage extends StatefulWidget {
   const LoveMoviePage({super.key});
@@ -12,15 +18,13 @@ class LoveMoviePage extends StatefulWidget {
 
 class _LoveMoviePageState extends State<LoveMoviePage> with SingleTickerProviderStateMixin {
   final LoveMovieController controller = Get.put(LoveMovieController());
+  final ThemeController themeController = Get.put(ThemeController());
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    controller.getHotData();
-    controller.getTop250Data();
-    controller.getLaterData();
   }
 
   @override
@@ -31,45 +35,31 @@ class _LoveMoviePageState extends State<LoveMoviePage> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("爱搜片"),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(
-              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.whatshot), Text('热门推荐')]),
-            ),
-            Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Icon(Icons.bookmark_outline), SizedBox(width: 2.0), Text('豆瓣排行')],
-              ),
-            ),
-            Tab(
-              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.event_note), Text('即将上映')]),
-            ),
-          ],
+    return Obx(() {
+      return Scaffold(
+        appBar: AppBar(title: const Text("爱搜片")),
+        body: LazyLoadIndexedStack(
+          index: controller.navIndex.value,
+          children: [HomeTabPage(), MovieListPage(), CategoryPage()],
         ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          double width = constraints.maxWidth;
-          int crossAxisCount = (width ~/ 130).clamp(3, 10);
-          return TabBarView(
-            controller: _tabController,
-            children: [
-              // 热门推荐
-              Obx(() => buildMovieGrid(controller.subjects, crossAxisCount)),
-              // 豆瓣 Top250
-              Obx(() => buildMovieGrid(controller.top250Data, crossAxisCount)),
-              // 即将上映
-              Obx(() => buildMovieGrid(controller.laterData, crossAxisCount)),
+        bottomNavigationBar: Material(
+          color: themeController.isDarkMode.value ? Colors.black : Colors.white,
+          elevation: 10,
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          child: SalomonBottomBar(
+            selectedItemColor: themeController.primaryColor.value,
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            currentIndex: controller.navIndex.value,
+            onTap: controller.changeNavIndex,
+            items: [
+              SalomonBottomBarItem(icon: Icon(Icons.home_outlined), title: Text("主页")),
+              SalomonBottomBarItem(icon: Icon(Icons.movie_outlined), title: Text("片单")),
+              SalomonBottomBarItem(icon: Icon(Icons.category_outlined), title: Text("分类")),
             ],
-          );
-        },
-      ),
-    );
+          ),
+        ),
+      );
+    });
   }
 }
 
