@@ -60,7 +60,6 @@ class PlaylistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeController>();
-    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -75,11 +74,11 @@ class PlaylistCard extends StatelessWidget {
                   httpHeaders: headers,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Container(
-                    color: Colors.grey[200],
+                    color: Get.theme.colorScheme.surfaceContainerHighest,
                     child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
                   ),
                   errorWidget: (context, url, error) => Container(
-                    color: Colors.grey[200],
+                    color: Get.theme.colorScheme.surfaceContainerHighest,
                     child: const Center(child: Icon(Icons.broken_image)),
                   ),
                 ),
@@ -91,7 +90,10 @@ class PlaylistCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
                 decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
-                child: const Text("豆", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                child: Text(
+                  "豆",
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
               ),
             ),
             Positioned(
@@ -106,9 +108,11 @@ class PlaylistCard extends StatelessWidget {
                     imageUrl: item.coverUrl,
                     httpHeaders: headers,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(color: Colors.grey[200]),
-                    errorWidget: (context, url, error) =>
-                        Container(color: Colors.grey[200], child: const Icon(Icons.broken_image, size: 16)),
+                    placeholder: (context, url) => Container(color: Get.theme.colorScheme.surfaceContainerHighest),
+                    errorWidget: (context, url, error) => Container(
+                      color: Get.theme.colorScheme.surfaceContainerHighest,
+                      child: const Icon(Icons.broken_image, size: 16),
+                    ),
                   ),
                 ),
               ),
