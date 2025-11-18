@@ -25,6 +25,8 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   lazy_load_indexed_stack: ^1.2.1
   easy_refresh: ^3.4.0
+  flutter_cache_manager: ^3.4.1
+  crypto: ^3.0.7
 
 dev_dependencies:
   flutter_test:

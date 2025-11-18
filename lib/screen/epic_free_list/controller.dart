@@ -4,7 +4,7 @@ import 'package:query_assistant_padi/http/dio_instance.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/type.dart';
 
 class EpicFreeController extends GetxController {
-  final url = "https://60s.viki.moe/v2/epic";
+  final url = "https://60s.7se.cn/v2/epic";
   var data = <Datum>[].obs;
 
   @override
