@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/douban_play_list_type.dart';
 
@@ -24,7 +25,6 @@ class _MovieListPageState extends State<MovieListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Obx(() {
         final list = controller.doubanPlayLists;
         if (list.isEmpty) {
@@ -59,73 +59,72 @@ class PlaylistCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(14), color: Colors.white),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: AspectRatio(
-                  aspectRatio: 16 / 12,
+    final themeController = Get.find<ThemeController>();
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: AspectRatio(
+                aspectRatio: 16 / 12,
+                child: CachedNetworkImage(
+                  imageUrl: item.headerBgImage,
+                  httpHeaders: headers,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey[200],
+                    child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    color: Colors.grey[200],
+                    child: const Center(child: Icon(Icons.broken_image)),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 6,
+              top: 6,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
+                child: const Text("豆", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            Positioned(
+              left: 6,
+              bottom: 6,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: SizedBox(
+                  width: 72,
+                  height: 100,
                   child: CachedNetworkImage(
-                    imageUrl: item.headerBgImage,
+                    imageUrl: item.coverUrl,
                     httpHeaders: headers,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      color: Colors.grey[200],
-                      child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                      color: Colors.grey[200],
-                      child: const Center(child: Icon(Icons.broken_image)),
-                    ),
+                    placeholder: (context, url) => Container(color: Colors.grey[200]),
+                    errorWidget: (context, url, error) =>
+                        Container(color: Colors.grey[200], child: const Icon(Icons.broken_image, size: 16)),
                   ),
                 ),
               ),
-              Positioned(
-                left: 6,
-                top: 6,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
-                  child: const Text("豆", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                ),
-              ),
-              Positioned(
-                left: 6,
-                bottom: 6,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: SizedBox(
-                    width: 36,
-                    height: 50,
-                    child: CachedNetworkImage(
-                      imageUrl: item.coverUrl,
-                      httpHeaders: headers,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Container(color: Colors.grey[200]),
-                      errorWidget: (context, url, error) =>
-                          Container(color: Colors.grey[200], child: const Icon(Icons.broken_image, size: 16)),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            item.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 4),
-          Text("共${item.itemsCount}部", style: const TextStyle(fontSize: 12, color: Colors.grey)),
-        ],
-      ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          item.title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 4),
+        Text("共${item.itemsCount}部", style: const TextStyle(fontSize: 12, color: Colors.grey)),
+      ],
     );
   }
 }

@@ -29,7 +29,7 @@ void toolOnTap(String toolName) {
 
       break;
     case "每日早报":
-      Get.to(ImageViewPage(imageUrl: "https://60s.viki.moe/v2/60s?encoding=image-proxy", cache: false));
+      Get.to(ImageViewPage(imageUrl: "https://60s.7se.cn/v2/60s?encoding=image-proxy", cache: false));
       break;
     case "二维码生成":
       DialogService.showInputSheet(
@@ -37,7 +37,7 @@ void toolOnTap(String toolName) {
         title: "二维码生成",
         hintText: "请输入需要链接或文本",
         type: InputFieldType.text,
-        onSubmit: (value) => Get.to(ImageViewPage(imageUrl: "https://60s.viki.moe/v2/qrcode?text=$value")),
+        onSubmit: (value) => Get.to(ImageViewPage(imageUrl: "https://60s.7se.cn/v2/qrcode?text=$value")),
       );
       break;
     case "Epic喜加一":
