@@ -10,7 +10,7 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-  final HomeController controller = Get.find<HomeController>();
+  final ToolsController controller = Get.find<ToolsController>();
 
   Widget buildItem(IconData icon, String title, int index) {
     final theme = Get.theme;
