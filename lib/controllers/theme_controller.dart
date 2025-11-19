@@ -10,6 +10,7 @@ class ThemeController extends GetxController {
   Rx<MaterialColor> primaryColor = Colors.blue.obs;
 
   int get index => _box.read('primaryColorIndex') ?? 0;
+  Color get grey => isDarkMode() ? Colors.grey.shade800 : Colors.grey.shade300;
 
   final List<MaterialColor> colors = [
     Colors.red,
