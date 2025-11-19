@@ -121,7 +121,7 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${item.title.split("年-")[0]}年",
+                    "${item.title.split("年")[0]}年",
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
 
@@ -129,7 +129,10 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
                     tag: subtitleTag,
                     child: Material(
                       color: Colors.transparent,
-                      child: Text(item.title.split("年-")[1], style: const TextStyle(fontSize: 12)),
+                      child: Text(
+                        item.title.split("年")[1].replaceFirst(RegExp(r'^-'), ''),
+                        style: const TextStyle(fontSize: 12),
+                      ),
                     ),
                   ),
                 ],
