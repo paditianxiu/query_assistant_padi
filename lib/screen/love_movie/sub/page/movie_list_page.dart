@@ -16,13 +16,12 @@ class MovieListPage extends StatefulWidget {
 
 class _MovieListPageState extends State<MovieListPage> {
   late final LoveMovieController controller;
-  late ThemeController themeController = Get.find();
+  final ThemeController themeController = Get.put(ThemeController());
 
   @override
   void initState() {
     super.initState();
     controller = Get.put(LoveMovieController());
-    themeController = Get.put(ThemeController());
     controller.getDoubanPlayList();
   }
 

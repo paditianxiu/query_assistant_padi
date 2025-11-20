@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:query_assistant_padi/dialog/function_bottom_sheet.dart';
+import 'package:query_assistant_padi/screen/beautiful_girl%20_video/page.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/page.dart';
 import 'package:query_assistant_padi/screen/image_view_page.dart';
 import 'package:query_assistant_padi/screen/love_movie/page.dart';
+import 'package:query_assistant_padi/screen/random_essay/page.dart';
 import 'package:query_assistant_padi/screen/today_in_history/page.dart';
 import 'package:query_assistant_padi/screen/wallpaper_collection/page.dart';
 
@@ -49,6 +51,12 @@ void toolOnTap(String toolName) {
       break;
     case "壁纸大全":
       Get.to(WallpaperCollectionPage());
+      break;
+    case "随机一文":
+      Get.to(RandomEssayPage());
+      break;
+    case "随机美女视频":
+      Get.to(BeautifulGirlVideoPage());
       break;
     default:
       ToastUtils.showErrorMsg("功能开发中...");
