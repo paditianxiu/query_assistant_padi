@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/today_in_history/detail.dart';
 import 'package:query_assistant_padi/screen/today_in_history/type.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -17,7 +18,7 @@ class TodayInHistoryPage extends StatefulWidget {
 
 class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
   final TodayInHistoryController controller = Get.put(TodayInHistoryController());
-
+  final ThemeController themeController = Get.put(ThemeController());
   @override
   void initState() {
     super.initState();
@@ -58,6 +59,11 @@ class _TodayInHistoryPageState extends State<TodayInHistoryPage> {
     final sk = skeletonColor();
 
     return Skeletonizer(
+      effect: ShimmerEffect(
+        baseColor: themeController.grey,
+        highlightColor: themeController.isDarkMode() ? Colors.grey.shade700 : Colors.grey.shade100,
+        duration: Duration(milliseconds: 1000),
+      ),
       enabled: true,
       child: Card(
         elevation: 1,

@@ -59,6 +59,7 @@ class _SkeletonCard extends StatelessWidget {
       elevation: 3,
       color: Theme.of(context).cardColor,
       child: Skeletonizer.zone(
+        enabled: true,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

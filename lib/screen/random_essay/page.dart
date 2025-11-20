@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:query_assistant_padi/screen/random_essay/controller.dart';
+import 'package:query_assistant_padi/utils/toast_utils.dart';
 
 class RandomEssayPage extends StatefulWidget {
   const RandomEssayPage({super.key});
@@ -23,7 +24,7 @@ class _RandomEssayPageState extends State<RandomEssayPage> {
   void _copyText() {
     final textToCopy = "${controller.title.value}\n${controller.author.value}\n${controller.content.value}";
     Clipboard.setData(ClipboardData(text: textToCopy));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制')));
+    ToastUtils.showSuccessMsg("已复制");
   }
 
   void _refreshContent() {
