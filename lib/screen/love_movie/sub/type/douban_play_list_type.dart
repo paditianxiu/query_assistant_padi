@@ -4,18 +4,18 @@
 
 import 'dart:convert';
 
-DoubanPlaylistType doubanPlaylistTypeFromJson(String str) => DoubanPlaylistType.fromJson(json.decode(str));
+DoubanPlayListType doubanPlaylistTypeFromJson(String str) => DoubanPlayListType.fromJson(json.decode(str));
 
-String doubanPlaylistTypeToJson(DoubanPlaylistType data) => json.encode(data.toJson());
+String doubanPlaylistTypeToJson(DoubanPlayListType data) => json.encode(data.toJson());
 
-class DoubanPlaylistType {
+class DoubanPlayListType {
   int count;
   int start;
   int total;
-  List<PlaylistTypeData> data;
+  List<PlayListTypeData> data;
   String sharingUrl;
 
-  DoubanPlaylistType({
+  DoubanPlayListType({
     required this.count,
     required this.start,
     required this.total,
@@ -23,11 +23,11 @@ class DoubanPlaylistType {
     required this.sharingUrl,
   });
 
-  factory DoubanPlaylistType.fromJson(Map<String, dynamic> json) => DoubanPlaylistType(
+  factory DoubanPlayListType.fromJson(Map<String, dynamic> json) => DoubanPlayListType(
     count: json["count"],
     start: json["start"],
     total: json["total"],
-    data: List<PlaylistTypeData>.from(json["data"].map((x) => PlaylistTypeData.fromJson(x))),
+    data: List<PlayListTypeData>.from(json["data"].map((x) => PlayListTypeData.fromJson(x))),
     sharingUrl: json["sharing_url"],
   );
 
@@ -40,14 +40,14 @@ class DoubanPlaylistType {
   };
 }
 
-class PlaylistTypeData {
+class PlayListTypeData {
   String category;
   List<PlaylistTypeItem> items;
   int total;
 
-  PlaylistTypeData({required this.category, required this.items, required this.total});
+  PlayListTypeData({required this.category, required this.items, required this.total});
 
-  factory PlaylistTypeData.fromJson(Map<String, dynamic> json) => PlaylistTypeData(
+  factory PlayListTypeData.fromJson(Map<String, dynamic> json) => PlayListTypeData(
     category: json["category"],
     items: List<PlaylistTypeItem>.from(json["items"].map((x) => PlaylistTypeItem.fromJson(x))),
     total: json["total"],

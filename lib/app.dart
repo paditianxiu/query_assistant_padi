@@ -14,7 +14,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 class App extends StatelessWidget {
   App({super.key});
 
-  final HomeController controller = Get.put(HomeController());
+  final ToolsController controller = Get.put(ToolsController());
   final ThemeController themeController = Get.put(ThemeController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
