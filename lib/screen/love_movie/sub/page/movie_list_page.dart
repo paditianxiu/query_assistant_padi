@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/movie_list_detail_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/controller.dart';
-import 'package:query_assistant_padi/screen/love_movie/douban_play_list_type.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/type/douban_play_list_type.dart';
 
 class MovieListPage extends StatefulWidget {
   const MovieListPage({super.key});
@@ -22,7 +23,7 @@ class _MovieListPageState extends State<MovieListPage> {
     super.initState();
     controller = Get.put(LoveMovieController());
     themeController = Get.put(ThemeController());
-    controller.getDoubanPlaylists();
+    controller.getDoubanPlayList();
   }
 
   @override
@@ -103,14 +104,17 @@ class PlaylistCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: AspectRatio(
                 aspectRatio: 16 / 12,
-                child: Container(
-                  color: Get.theme.colorScheme.surfaceContainerHighest,
-                  child: CachedNetworkImage(
-                    imageUrl: item?.headerBgImage ?? "",
-                    httpHeaders: headers,
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(color: themeController.grey),
-                    errorWidget: (_, __, ___) => Icon(Icons.broken_image),
+                child: InkWell(
+                  onTap: () => Get.to(() => MovieListDetailPage(id: item?.id ?? "")),
+                  child: Ink(
+                    color: Get.theme.colorScheme.surfaceContainerHighest,
+                    child: CachedNetworkImage(
+                      imageUrl: item?.headerBgImage ?? "",
+                      httpHeaders: headers,
+                      fit: BoxFit.cover,
+                      placeholder: (_, __) => Container(color: themeController.grey),
+                      errorWidget: (_, __, ___) => Icon(Icons.broken_image),
+                    ),
                   ),
                 ),
               ),
@@ -133,8 +137,8 @@ class PlaylistCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: SizedBox(
-                  width: 72,
-                  height: 100,
+                  width: 50,
+                  height: 70,
                   child: CachedNetworkImage(
                     imageUrl: item?.coverUrl ?? "",
                     httpHeaders: headers,

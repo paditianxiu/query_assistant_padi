@@ -5,8 +5,8 @@ import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/home_tab_page.dart';
 import 'package:query_assistant_padi/screen/love_movie/movie_card.dart';
-import 'package:query_assistant_padi/screen/love_movie/sub/category_page.dart';
-import 'package:query_assistant_padi/screen/love_movie/sub/movie_list_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/category_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/movie_list_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class LoveMoviePage extends StatefulWidget {

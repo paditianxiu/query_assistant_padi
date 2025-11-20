@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:query_assistant_padi/screen/love_movie/sub/hot_page.dart';
-import 'package:query_assistant_padi/screen/love_movie/sub/top250_page.dart';
-import 'package:query_assistant_padi/screen/love_movie/sub/coming_soon_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/hot_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/top250_page.dart';
+import 'package:query_assistant_padi/screen/love_movie/sub/page/coming_soon_page.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({super.key});
