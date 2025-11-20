@@ -26,7 +26,7 @@ class ToolsPage extends StatelessWidget {
             "壁纸大全",
             "每日早报",
             "在线翻译",
-            "每日一文",
+            "随机一文",
             "随机美女视频",
             "记分板",
             "怀旧游戏",
@@ -43,7 +43,7 @@ class ToolsPage extends StatelessWidget {
           icon: Icons.apps_outlined,
           isLast: true,
           title: "黑客工具",
-          tools: ["计算器", "进制转换", "二维码生成", "图片压缩", "图片转码", "图片去水印"],
+          tools: ["计算器", "进制转换", "图片压缩", "图片转码", "图片去水印"],
         ),
       ],
     );

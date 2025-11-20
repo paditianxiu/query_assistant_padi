@@ -21,8 +21,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
       return InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: () {
-          controller.changeNavIndex(index);
-          Get.back();
+          if (index <= 3) {
+            controller.changeNavIndex(index);
+            Get.back();
+          }
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
