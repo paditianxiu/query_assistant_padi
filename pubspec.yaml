@@ -31,6 +31,7 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_html: ^3.0.0
   video_player: ^2.10.1
+  flutter_js: ^0.8.5
 
 dev_dependencies:
   flutter_test:

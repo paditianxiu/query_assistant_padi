@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:query_assistant_padi/screen/home/controller.dart';
@@ -68,52 +69,43 @@ class HomePage extends StatelessWidget {
 
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            sliver: SliverToBoxAdapter(
-              child: Obx(() {
-                return GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: c.tools.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    childAspectRatio: 0.8,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemBuilder: (_, i) {
-                    final item = c.tools[i];
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InkWell(
-                          borderRadius: BorderRadius.circular(16),
-                          onTap: () {},
-                          child: Ink(
-                            width: 56,
-                            height: 56,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primaryContainer,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-
-                            child: Center(
-                              child: Icon(
-                                item["icon"] as IconData,
-                                size: 32,
-                                color: Theme.of(context).colorScheme.onPrimaryContainer,
-                              ),
+            sliver: Obx(() {
+              return SliverMasonryGrid.count(
+                crossAxisCount: 5,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
+                childCount: c.tools.length,
+                itemBuilder: (_, i) {
+                  final item = c.tools[i];
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {},
+                        child: Ink(
+                          width: 56,
+                          height: 56,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primaryContainer,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              item["icon"] as IconData,
+                              size: 32,
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
                             ),
                           ),
                         ),
-
-                        const SizedBox(height: 6),
-                        Text(item["name"].toString(), style: const TextStyle(fontSize: 13)),
-                      ],
-                    );
-                  },
-                );
-              }),
-            ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(item["name"].toString(), style: const TextStyle(fontSize: 13)),
+                    ],
+                  );
+                },
+              );
+            }),
           ),
 
           const SliverPadding(padding: EdgeInsets.only(top: 20)),

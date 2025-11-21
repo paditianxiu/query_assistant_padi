@@ -182,6 +182,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.0"
+  flutter_js:
+    dependency: "direct main"
+    description:
+      name: flutter_js
+      sha256: a04966b102967891ee4947d6e52b450676f16204876ba936e394008ca26db04b
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.8.5"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -573,6 +581,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.4.1"
+  sync_http:
+    dependency: transitive
+    description:
+      name: sync_http
+      sha256: "7f0cd72eca000d2e026bcd6f990b81d0ca06022ef4e32fb257b30d3d1014a961"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.1"
   synchronized:
     dependency: transitive
     description:
