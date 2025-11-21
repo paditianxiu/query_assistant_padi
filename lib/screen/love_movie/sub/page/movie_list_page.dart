@@ -6,6 +6,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:query_assistant_padi/controllers/theme_controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/controller.dart';
 import 'package:query_assistant_padi/screen/love_movie/sub/type/douban_play_list_type.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MovieListPage extends StatefulWidget {
   const MovieListPage({super.key});
@@ -30,26 +31,23 @@ class _MovieListPageState extends State<MovieListPage> {
     return Scaffold(
       body: Obx(() {
         final list = controller.doubanPlayLists;
-
         final isLoading = list.isEmpty;
-        final List<PlaylistTypeItem?> data = isLoading ? List<PlaylistTypeItem?>.filled(8, null) : list;
+
+        final List<PlaylistTypeItem?> data = isLoading ? List.filled(8, null) : list;
 
         return Skeletonizer(
           enabled: isLoading,
           effect: ShimmerEffect(
             baseColor: themeController.grey,
             highlightColor: themeController.isDarkMode() ? Colors.grey.shade700 : Colors.grey.shade100,
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
           ),
-          child: GridView.builder(
+          child: MasonryGridView.builder(
             padding: const EdgeInsets.all(12),
+            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            mainAxisSpacing: 14,
+            crossAxisSpacing: 14,
             itemCount: data.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 14,
-              crossAxisSpacing: 14,
-              childAspectRatio: 0.78,
-            ),
             itemBuilder: (_, i) {
               return PlaylistCard(item: data[i], themeController: themeController);
             },
@@ -112,7 +110,7 @@ class PlaylistCard extends StatelessWidget {
                       httpHeaders: headers,
                       fit: BoxFit.cover,
                       placeholder: (_, __) => Container(color: themeController.grey),
-                      errorWidget: (_, __, ___) => Icon(Icons.broken_image),
+                      errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
                     ),
                   ),
                 ),
@@ -143,7 +141,7 @@ class PlaylistCard extends StatelessWidget {
                     httpHeaders: headers,
                     fit: BoxFit.cover,
                     placeholder: (_, __) => Container(color: themeController.grey),
-                    errorWidget: (_, __, ___) => Icon(Icons.broken_image),
+                    errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
                   ),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:query_assistant_padi/dialog/function_bottom_sheet.dart';
 import 'package:query_assistant_padi/screen/beautiful_girl%20_video/page.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/page.dart';
+import 'package:query_assistant_padi/screen/google_translate/page.dart';
 import 'package:query_assistant_padi/screen/image_view_page.dart';
 import 'package:query_assistant_padi/screen/love_movie/page.dart';
 import 'package:query_assistant_padi/screen/random_essay/page.dart';
@@ -57,6 +58,9 @@ void toolOnTap(String toolName) {
       break;
     case "随机美女视频":
       Get.to(BeautifulGirlVideoPage());
+      break;
+    case "谷歌翻译":
+      Get.to(GoogleTranslatePage());
       break;
     default:
       ToastUtils.showErrorMsg("功能开发中...");

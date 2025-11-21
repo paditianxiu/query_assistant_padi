@@ -25,7 +25,7 @@ class ToolsPage extends StatelessWidget {
             "Epic喜加一",
             "壁纸大全",
             "每日早报",
-            "在线翻译",
+            "谷歌翻译",
             "随机一文",
             "随机美女视频",
             "记分板",
