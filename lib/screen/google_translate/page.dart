@@ -335,69 +335,76 @@ class _GoogleTranslatePageState extends State<GoogleTranslatePage> {
         return const SizedBox();
       }
 
-      return Card.outlined(
-        margin: EdgeInsets.symmetric(horizontal: 16),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.auto_awesome_mosaic, size: 18, color: colorScheme.primary),
-                  const SizedBox(width: 8),
-                  Text(
-                    '其他翻译',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: colorScheme.onSurface),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              ...googleTranslateController.result.value.entries.map((entry) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        entry.pos,
-                        style: TextStyle(
-                          color: colorScheme.onSurfaceVariant,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: Card.outlined(
+          margin: EdgeInsets.symmetric(horizontal: 16),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.auto_awesome_mosaic, size: 18, color: colorScheme.primary),
+                    const SizedBox(width: 8),
+                    Text(
+                      '其他翻译',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: colorScheme.onSurface),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                ...googleTranslateController.result.value.entries.map((entry) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          entry.pos,
+                          style: TextStyle(
+                            color: colorScheme.onSurfaceVariant,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: entry.examples.map((example) {
-                          return GestureDetector(
-                            onTap: () {
-                              _textController.text = example;
-                              _performTranslation();
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: entry.examples.map((example) {
+                            return GestureDetector(
+                              onTap: () {
+                                _textController.text = example;
+                                _performTranslation();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
 
-                              decoration: BoxDecoration(
-                                color: colorScheme.primary.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: colorScheme.primary.withValues(alpha: 0.3)),
+                                decoration: BoxDecoration(
+                                  color: colorScheme.primary.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(color: colorScheme.primary.withValues(alpha: 0.3)),
+                                ),
+                                child: Text(
+                                  example,
+                                  style: TextStyle(
+                                    color: colorScheme.primary,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
-                              child: Text(
-                                example,
-                                style: TextStyle(color: colorScheme.primary, fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-            ],
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       );

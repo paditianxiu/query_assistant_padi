@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_js/flutter_js.dart';
+import 'package:query_assistant_padi/http/dio_instance.dart';
 import 'package:query_assistant_padi/screen/google_translate/language.dart';
 import 'package:query_assistant_padi/screen/google_translate/type.dart';
 
@@ -58,10 +59,6 @@ class GoogleTranslateController extends GetxController {
   Future<void> translate(String from, String to, String text) async {
     loading.value = true;
     final tk = await _getTk(text);
-
-    final placeholder = "\uE001"; // 或者使用一个独特的 Unicode 字符，如："\uE001"
-    final encodedText = text.replaceAll("\n", placeholder);
-
     final dtList = ["at", "bd", "ex", "ld", "md", "qca", "rw", "rm", "ss", "t"];
     final queryList = [
       "client=webapp",
@@ -76,12 +73,12 @@ class GoogleTranslateController extends GetxController {
       "tsel=0",
       "kc=0",
       "tk=$tk",
-      "q=${Uri.encodeQueryComponent(encodedText)}",
+      "q=${Uri.encodeComponent(text)}",
     ];
     final q = queryList.join("&");
 
-    final response = await Dio().get(
-      _url + q,
+    final response = await DioInstance.instance().get(
+      path: _url + q,
       options: Options(headers: {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 4_0 like Mac OS X)"}),
     );
 
