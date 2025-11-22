@@ -246,7 +246,7 @@ class _GoogleTranslatePageState extends State<GoogleTranslatePage> {
             children: [
               SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
-                child: Text(
+                child: SelectableText(
                   googleTranslateController.result.value.translated,
                   style: TextStyle(fontSize: 16, height: 1.5, color: colorScheme.onSurface),
                 ),
@@ -338,7 +338,7 @@ class _GoogleTranslatePageState extends State<GoogleTranslatePage> {
       return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Card.outlined(
-          margin: EdgeInsets.symmetric(horizontal: 16),
+          margin: EdgeInsets.symmetric(horizontal: 20),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

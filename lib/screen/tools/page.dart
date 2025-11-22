@@ -28,6 +28,7 @@ class ToolsPage extends StatelessWidget {
             "谷歌翻译",
             "随机一文",
             "随机美女视频",
+            "高考必刷题",
             "记分板",
             "怀旧游戏",
           ],

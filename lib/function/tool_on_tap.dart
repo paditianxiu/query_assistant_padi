@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:query_assistant_padi/dialog/function_bottom_sheet.dart';
 import 'package:query_assistant_padi/screen/beautiful_girl%20_video/page.dart';
+import 'package:query_assistant_padi/screen/college_entrance_exam/page.dart';
 import 'package:query_assistant_padi/screen/epic_free_list/page.dart';
 import 'package:query_assistant_padi/screen/google_translate/page.dart';
 import 'package:query_assistant_padi/screen/image_view_page.dart';
@@ -61,6 +62,9 @@ void toolOnTap(String toolName) {
       break;
     case "谷歌翻译":
       Get.to(GoogleTranslatePage());
+      break;
+    case "高考必刷题":
+      Get.to(CollegeEntranceExamPage());
       break;
     default:
       ToastUtils.showErrorMsg("功能开发中...");

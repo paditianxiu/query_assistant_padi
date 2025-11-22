@@ -32,6 +32,7 @@ dependencies:
   flutter_html: ^3.0.0
   video_player: ^2.10.1
   flutter_js: ^0.8.5
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
